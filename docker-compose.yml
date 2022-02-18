@@ -2,28 +2,24 @@ version: '3.8'
 services:
   config-server:
     image: config-server:v1
-    build:
-      context: .
-      dockerfile: src/Dockerfile
+    build: .
     ports:
-      - '8090:8090'
+      - "8090:8090"
     restart: always
     networks:
       - springcloud
   eureka-server:
     image: eureka-server:v1
-    build:
-      context: .
-      dockerfile: src/Dockerfile
+    build: .
     ports:
-      - '8091:8091'
+      - "8091:8091"
     restart: always
     networks:
       - springcloud
   mongo:
     image: mongo:latest
     ports:
-      - '27017:27017'
+      - "27017:27017"
     restart: always
     networks:
       - springcloud
@@ -33,11 +29,9 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: admin1
   service-product:
     image: service-product:v1
-    build:
-      context: .
-      dockerfile: src/Dockerfile
+    build: .
     ports:
-      - '8093:8093'
+      - "8093:8093"
     restart: always
     networks:
       - springcloud
@@ -47,11 +41,9 @@ services:
       - mongo:latest
   client-service:
     image: client-service:v1
-    build:
-      context: .
-      dockerfile: src/Dockerfile
+    build: .
     ports:
-      - '8094:8094'
+      - "8094:8094"
     restart: always
     networks:
       - springcloud
@@ -61,11 +53,9 @@ services:
       - mongo:latest
   account-service:
     image: account-service:v1
-    build:
-      context: .
-      dockerfile: src/Dockerfile
+    build: .
     ports:
-      - '8095:8095'
+      - "8095:8095"
     restart: always
     networks:
       - springcloud
@@ -77,11 +67,9 @@ services:
       - mongo:latest
   gateway-service:
     image: gateway-service:v1
-    build:
-      context: .
-      dockerfile: src/Dockerfile
+    build: .
     ports:
-      - '8092:8092'
+      - "8092:8092"
     restart: always
     networks:
       - springcloud
