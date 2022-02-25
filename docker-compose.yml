@@ -7,8 +7,8 @@ services:
     restart: always
     networks:
       - springcloud
-  eureka-server:
-    image: eureka-server:v1
+  eureka-service:
+    image: eureka-service:v1
     ports:
       - "8091:8091"
     restart: always
