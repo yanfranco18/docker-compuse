@@ -12,8 +12,8 @@ services:
     ports:
       - "8091:8091"
     restart: always
-    depends_on: 
-      - config-server    
+    depends_on:
+      - config-server
     networks:
       - springcloud
   mongo:
@@ -23,7 +23,7 @@ services:
     restart: always
     networks:
       - springcloud
-    environment: 
+    environment:
       MONGO_INITDB_DATABASE: DbProyect
       MONGO_INITDB_ROOT_USERNAME: admin1
       MONGO_INITDB_ROOT_PASSWORD: admin1
@@ -34,9 +34,9 @@ services:
     restart: always
     networks:
       - springcloud
-    depends_on: 
+    depends_on:
       - config-server
-      - eureka-server
+      - eureka-service
       - mongo:latest
   client-service:
     image: client-service:v1
@@ -45,9 +45,9 @@ services:
     restart: always
     networks:
       - springcloud
-    depends_on: 
+    depends_on:
       - config-server
-      - eureka-server
+      - eureka-service
       - mongo:latest
   account-service:
     image: account-service:v1
@@ -56,9 +56,9 @@ services:
     restart: always
     networks:
       - springcloud
-    depends_on: 
+    depends_on:
       - config-server
-      - eureka-server
+      - eureka-service
       - mongo:latest
   payments-service:
     image: payments-service:v1
@@ -67,11 +67,11 @@ services:
     restart: always
     networks:
       - springcloud
-    depends_on: 
+    depends_on:
       - config-server
-      - eureka-server
+      - eureka-service
       - account-service
-      - mongo:latest      
+      - mongo:latest   
   gateway-service:
     image: gateway-service:v1
     ports:
@@ -79,9 +79,9 @@ services:
     restart: always
     networks:
       - springcloud
-    depends_on: 
+    depends_on:
       - config-server
-      - eureka-server
+      - eureka-service
       - service-product
       - client-service
       - account-service
