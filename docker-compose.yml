@@ -71,7 +71,19 @@ services:
       - config-server
       - eureka-service
       - account-service
-      - mongo:latest   
+      - mongo:latest
+  debit-service:
+    image: debit-service:v1
+    ports:
+      - "8097:8097"
+    restart: always
+    networks:
+      - springcloud
+    depends_on:
+      - config-server
+      - eureka-service
+      - account-service
+      - mongo:latest 
   gateway-service:
     image: gateway-service:v1
     ports:
@@ -86,5 +98,6 @@ services:
       - client-service
       - account-service
       - payments-service
+      - debit-service
 networks:
   springcloud:
