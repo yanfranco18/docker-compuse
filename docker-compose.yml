@@ -83,6 +83,18 @@ services:
       - config-server
       - eureka-service
       - account-service
+      - mongo:latest
+  yanki-service:
+    image: yanki-service:v1
+    ports:
+      - "8099:8099"
+    restart: always
+    networks:
+      - springcloud
+    depends_on:
+      - config-server
+      - eureka-service
+      - debit-service
       - mongo:latest 
   gateway-service:
     image: gateway-service:v1
@@ -99,5 +111,6 @@ services:
       - account-service
       - payments-service
       - debit-service
+      - yanki-service
 networks:
   springcloud:
